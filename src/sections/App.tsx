@@ -1,58 +1,60 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import headshotUrl from '../assets/Rishi.jpg'
+import resumePdfUrl from '../assets/Rishi_Resume.pdf'
 import ThemeToggle from '../components/ThemeToggle'
 import Chip from '../components/Chip'
 import { profile } from '../data_profile'
 
 
-function Header({ active }: any) {
-  const [open, setOpen] = useState(false);
-  const navItems = [
-    { id: 'projects', label: 'Projects' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'education', label: 'Education' },
-    { id: 'contact', label: 'Contact' },
-  ];
+
+function Header() {
+  const [open, setOpen] = useState(false)
+
   return (
-    <header className="container-xl py-6 flex items-center justify-between sticky top-0 z-40 bg-white/70 dark:bg-[#0b0f19]/70 backdrop-blur border-b border-slate-100/50 dark:border-white/10">
-      <div className="flex items-center gap-3">
-        <img src="/assets/Rishi.jpg" alt="Headshot" className="w-8 h-8 rounded-full object-cover border border-slate-200 dark:border-white/10"/>
-        <a href="#home" className="font-semibold text-lg">RV</a>
-      </div>
+    <header className="header-glass">
+      <div className="container-xl py-4 flex items-center justify-between">
+        <a href="#home" className="flex items-center gap-3 font-semibold text-lg">
+          <img src={headshotUrl} alt="Headshot" className="w-8 h-8 rounded-full object-cover border border-slate-200 dark:border-white/10" />
+          RV
+        </a>
 
-      <nav className="hidden md:flex gap-6 text-sm">
-        {navItems.map((n) => (
-          <a
-            key={n.id}
-            className={`link ${active === n.id ? 'text-brand font-semibold' : ''}`}
-            href={`#${n.id}`}
-          >
-            {n.label}
-          </a>
-        ))}
-        <a className="link" href="/assets/Rishi_Resume.pdf" download>Resume</a>
-        <a className="link" href="https://github.com/rishivankayala?tab=projects" target="_blank" rel="noreferrer">GitHub</a>
-        <ThemeToggle />
-      </nav>
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-4 text-sm">
+          <a className="link nav-pill" href="#experience">Experience</a>
+          <a className="link nav-pill" href="#projects">Projects</a>
+          <a className="link nav-pill" href="#skills">Skills</a>
+          <a className="link nav-pill" href="#education">Education</a>
+          <a className="link nav-pill" href="#contact">Contact</a>
+          <a className="link nav-pill" href="https://github.com/rishivankayala?tab=repositories" target="_blank" rel="noreferrer">GitHub</a>
+          <a className="link nav-pill" href={resumePdfUrl} download>Resume</a>
+          <ThemeToggle />
+        </nav>
 
-      <button className="md:hidden btn" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
-        ☰
-      </button>
-
-      {open && (
-        <div className="absolute left-0 right-0 top-full md:hidden bg-white dark:bg-[#0b0f19] border-b border-slate-100 dark:border-white/10">
-          <div className="container-xl py-3 flex flex-col gap-3 text-sm">
-            {navItems.map((n) => (
-              <a key={n.id} className="link" href={`#${n.id}`} onClick={() => setOpen(false)}>{n.label}</a>
-            ))}
-            <a className="link" href="/assets/Rishi_Resume.pdf" download onClick={() => setOpen(false)}>Resume</a>
-          </div>
+        {/* Mobile */}
+        <div className="md:hidden flex items-center gap-3">
+          <ThemeToggle />
+          <button className="btn" onClick={() => setOpen(v => !v)} aria-label="Toggle menu">☰</button>
         </div>
-      )}
+
+        {open && (
+          <div className="absolute left-0 right-0 top-full md:hidden bg-white dark:bg-[#0b0f19] border-b border-slate-100 dark:border-white/10">
+            <div className="container-xl py-3 flex flex-col gap-3 text-sm">
+              <a className="link" href="#experience" onClick={() => setOpen(false)}>Experience</a>
+              <a className="link" href="#projects" onClick={() => setOpen(false)}>Projects</a>
+              <a className="link" href="#skills" onClick={() => setOpen(false)}>Skills</a>
+              <a className="link" href="#education" onClick={() => setOpen(false)}>Education</a>
+              <a className="link" href="#contact" onClick={() => setOpen(false)}>Contact</a>
+              <a className="link" href="https://github.com/rishivankayala?tab=repositories" target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>GitHub</a>
+              <a className="link" href={resumePdfUrl} download onClick={() => setOpen(false)}>Resume</a>
+            </div>
+          </div>
+        )}
+      </div>
     </header>
-  );
+  )
 }
+
 
 
 
@@ -107,11 +109,11 @@ function Hero() {
           <p className="opacity-80 mt-4 max-w-xl">{profile.summary}</p>
           <div className="mt-6 flex gap-3">
             <a className="btn btn-primary" href="#projects">View Projects</a>
-            <a className="btn" href="/assets/Rishi_Resume.pdf" download>Download Resume</a>
+            <a className="btn" href={resumePdfUrl} download>Download Resume</a>
           </div>
         </div>
         <motion.img
-          src="/assets/Rishi.jpg"
+          src={headshotUrl}
           alt="Headshot"
           className="rounded-2xl w-full md:w-4/5 ml-auto border border-slate-200 dark:border-white/10"
           initial={{ opacity: 0, scale: .95 }}

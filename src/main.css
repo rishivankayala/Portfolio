@@ -72,3 +72,9 @@ html { scroll-behavior: smooth; }
 
 /* Card micro-lift already present; add subtle glow on hover */
 .card:hover { box-shadow: 0 10px 30px rgba(139,92,246,.15), 0 8px 18px rgba(236,72,153,.08); }
+
+
+/* Glassy sticky header and pill nav */
+.header-glass { @apply sticky top-0 z-40 bg-white/70 dark:bg-[#0b0f19]/70 backdrop-blur border-b border-slate-100/50 dark:border-white/10; }
+.nav-pill { @apply rounded-full px-3 py-1 transition; }
+.nav-pill:hover { @apply bg-slate-100 dark:bg-white/10; }
