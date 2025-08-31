@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+html, body, #root { height: 100%; }
+
+/* Reusable utilities */
+.container-xl {
+  @apply max-w-6xl mx-auto px-4;
+}
+.card {
+  @apply bg-white/70 dark:bg-white/5 backdrop-blur rounded-2xl shadow-soft p-6 border border-slate-100/70 dark:border-white/10;
+}
+.badge {
+  @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium border border-slate-200 dark:border-white/10;
+}
+.link {
+  @apply underline decoration-dotted underline-offset-4 hover:decoration-solid;
+}
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+
+/* Buttons consistent with nav aesthetic */
+.btn { @apply inline-flex items-center justify-center rounded-full px-3 py-1 text-sm border border-slate-300 dark:border-white/10 transition; }
+.btn:hover { @apply bg-slate-100 dark:bg-white/10; }
+.btn-primary { @apply border-brand text-brand hover:bg-brand hover:text-white dark:hover:bg-brand; }
+
+/* Card hover lift */
+.card { @apply transition-transform; }
+.card:hover { @apply -translate-y-0.5; }
+
+
+/* 3D tilt container helper */
+.perspective { perspective: 1000px; }
+
+
+/* Animated gradient background */
+.animated-bg {
+  position: relative;
+  isolation: isolate;
+}
+.animated-bg::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  background: radial-gradient(40% 40% at 20% 20%, rgba(139,92,246,.25), transparent 60%),
+              radial-gradient(40% 40% at 80% 10%, rgba(236,72,153,.22), transparent 60%),
+              linear-gradient(120deg, rgba(139,92,246,.08), rgba(236,72,153,.08));
+  filter: blur(40px);
+  animation: gradientFloat 18s ease-in-out infinite alternate;
+  z-index: -1;
+}
+@keyframes gradientFloat {
+  0% { transform: translateY(-3%) translateX(-2%) scale(1.0); }
+  100%{ transform: translateY(3%) translateX(2%)  scale(1.05); }
+}
+
+/* Link hover flair */
+.link { @apply underline decoration-dotted underline-offset-4 hover:decoration-solid; }
+.link:hover { @apply text-brand; }
+
+/* Button polish */
+.btn { @apply inline-flex items-center justify-center rounded-full px-3 py-1 text-sm border transition; }
+.btn:hover { @apply shadow-soft; }
+.btn-primary { @apply border-brand text-brand; }
+.btn-primary:hover { @apply bg-brand text-white; }
+
+/* Card micro-lift already present; add subtle glow on hover */
+.card:hover { box-shadow: 0 10px 30px rgba(139,92,246,.15), 0 8px 18px rgba(236,72,153,.08); }
