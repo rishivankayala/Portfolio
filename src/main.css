@@ -78,3 +78,20 @@ html { scroll-behavior: smooth; }
 .header-glass { @apply sticky top-0 z-40 bg-white/70 dark:bg-[#0b0f19]/70 backdrop-blur border-b border-slate-100/50 dark:border-white/10; }
 .nav-pill { @apply rounded-full px-3 py-1 transition; }
 .nav-pill:hover { @apply bg-slate-100 dark:bg-white/10; }
+
+@media print {
+    /* white background, darker text */
+    html, body { background: #fff !important; color: #111 !important; }
+
+    /* hide interactive-only UI */
+    header, nav, .btn, .link[href*="github.io/Portfolio"] { display: none !important; }
+
+    /* compact spacing */
+    .container-xl { padding: 0 1rem !important; }
+    section { padding: 1rem 0 !important; }
+
+    /* avoid split headings at page breaks */
+    h1, h2, h3 { break-after: avoid-page; }
+    .card, article { break-inside: avoid; }
+}
+
